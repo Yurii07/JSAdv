@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Шифр Цезаря</title>
+</head>
+<style>
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 22px;
+  }
+  .ceasars-cipher-header{
+    margin-top: 20px;
+    font-size: 30px;
+  }
+  label{
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  .caesars-cipher-output{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .caesars-cipher-output span {
+    margin-top: 10px;
+  }
+  .caesars-cipher {
+    height: 100vh;
+    width: 100vw;
+    background-color: #009688;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .caesars-cipher-input{
+    width: 50%;
+    max-width: 500px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    height: 40px;
+    font-size: 20px;
+  }
+  .caesars-cipher-input:focus{
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+  }
+
+</style>
+<body>
+
+<div class="caesars-cipher">
+  <h2 class="ceasars-cipher-header">Шифр Цезаря</h2>
+  <label for="caesars-cipher-message">Напишите свое сообщение сюда:</label>
+  <input class="caesars-cipher-input caesars-cipher-message" type="text">
+  <label for="caesars-cipher-shift">Напишите свой шаг:</label>
+  <input class="caesars-cipher-input caesars-cipher-shift" value="3" type="text">
+  <div class="caesars-cipher-output">Ваше расскодированый сообщение: <span></span></div>
+</div>
+
+<script>
+
+    /*
+
+    Задание "Шифр цезаря":
+
+      https://uk.wikipedia.org/wiki/%D0%A8%D0%B8%D1%84%D1%80_%D0%A6%D0%B5%D0%B7%D0%B0%D1%80%D1%8F
+
+      Написать функцию, которая будет принимать в себя слово и количество
+      симовлов на которые нужно сделать сдвиг внутри.
+
+      Написать функцию дешефратор которая вернет слово в изначальный вид.
+
+      Сделать статичные функции используя bind и метод частичного
+      вызова функции (каррирования), которая будет создавать и дешефровать
+      слова с статично забитым шагом от одного до 5.
+
+      Например:
+        encryptCesar('Word', 3);
+        encryptCesar1(...)
+        ...
+        encryptCesar5(...)
+
+        decryptCesar1('Sdwq', 3);
+        decryptCesar1(...)
+        ...
+        decryptCesar5(...)
+
+  */
+
+    let msg = document.querySelector('.caesars-cipher-message'),
+        shift = document.querySelector('.caesars-cipher-shift'),
+        output = document.querySelector('.caesars-cipher-output span');
+
+    msg.addEventListener('keyup', function(){
+        output.textContent = cesarsCipher({
+            msg: msg.value,
+            shift: shift.value
+        });
+    });
+
+    shift.addEventListener('keyup', function(){
+        output.textContent = cesarsCipher({
+            msg: msg.value,
+            shift: shift.value
+        });
+    });
+
+    function cesarsCipher(obj){
+        let alphabets = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ", "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя", "АБВГДЕЁЖЗІЙКЛМНОПРСТУЎФХЦЧШЬЮЯ", "абвгдеёжзійклмнопрстуўфхцчшьюя"],
+            alphabetsString = "",
+            otherCharacters = "1234567890,.~§#$%^&*!?-–=+/<>{}()\\ \'[]|\"№:;_",
+            output = "",
+            msg = obj.msg,
+            shift = +obj.shift,
+            shiftedAlphabets = "";
+
+        if(msg != '') {
+            for( let i = 0; i < alphabets.length; i++){
+                shiftedAlphabets += alphabets[i].slice(shift);
+                shiftedAlphabets += alphabets[i].slice(0, shift);
+                alphabetsString += alphabets[i];
+            }
+            shiftedAlphabets += otherCharacters;
+            alphabetsString += otherCharacters;
+            for (let i = 0; i < msg.length; i++){
+                output += shiftedAlphabets[alphabetsString.indexOf(msg[i])];
+            }
+        } else {
+            return;
+        }
+        return output;
+    }
+
+
+    //Английский
+    //Русский
+    //Украинский
+    //Белорусский
+
+</script>
+</body>
+</html>

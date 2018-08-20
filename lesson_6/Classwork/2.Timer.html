@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<style>
+    .wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        display: flex;
+
+    }
+    #txt1 {
+
+    }
+
+    .hand {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        /*transition: transform .3s cubic-bezier(.4, 2.08, .55, .44);*/
+        transform-origin: 50% 3px;
+    }
+
+    .hand::before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        width: 50%;
+        height: 6px;
+        background: black;
+    }
+</style>
+<body>
+
+<div class="wrapper">
+    <div id='txt1'></div>
+    <button onclick='timer()'>Timer</button>
+    <button onclick='pause()'>Pause</button>
+    <button onclick='reset()'>Reset</button>
+    <button onclick="simple()">Simple</button>
+    <button onclick="reverse()">Revers</button>
+
+    <div class="clock">
+        <div class="clock-face">
+            <!--<div class="hand hour-hand js-hour-hand"></div>-->
+            <!--<div class="hand min-hand js-min-hand"></div>-->
+            <div class="hand second-hand js-second-hand" id="second-hand" style="transform: rotate(90deg);"></div>
+        </div>
+    </div>
+
+</div>
+
+      <!--
+        Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30,
+        также добавьте кнопки который останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отчет.
+        Также попробуйте изменить код так чтобы отчет начиналься с 30 и заканчивалься на 1.
+
+       + бонус: Сделать так что бы на каждый тик (1с/2c) менялся цвет фона. Можно на основе генератора случайного цвета с предудущих уроков.
+       + бонус: Сделать визуализацию стрелки которая идет по кругу
+            document.getElementById("myDIV").style.transform = "rotate(7deg)";
+
+       + бонус: Сделать кнопки которые выбирают режим в котором идет отсчет - обычный от 0 до 30 или реверсивный от 30 до 0
+      -->
+      <script>
+
+          function random_bg_color() {
+              var x = Math.floor(Math.random() * 256);
+              var y = Math.floor(Math.random() * 256);
+              var z = Math.floor(Math.random() * 256);
+              var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+              // console.log(bgColor);
+              document.body.style.background = bgColor;
+          }
+
+
+          var stop = false;
+          var counter = 5; //31
+          function second_passed() {
+              console.log("прошла секунда" + counter);
+
+              if (counter > 2 && !stop) {
+                  timer();
+              } else {
+                  return;
+              }
+          }
+
+          function timer() {
+              // random_bg_color();
+              if (stop) {
+                  stop = false;
+                 
+              }
+
+              setTimeout(() => {
+                  second_passed();
+                  counter--;
+
+                  document.getElementById('txt1').innerHTML = counter;
+              }, 1000)
+
+              // const hourHand = document.querySelector('.js-hour-hand');
+              // const minuteHand = document.querySelector('.js-min-hand');
+              const secondHand = document.querySelector('.js-second-hand');
+
+
+
+
+              setInterval( () => {
+ const now = new Date();
+
+ const seconds = now.getSeconds();
+ const secondsDegrees = ((seconds / 60) * 180) + 90;
+ secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+console.log(secondsDegrees)
+}, 1000 );
+
+
+//               setInterval(() => {
+//                   const currentDate = new Date();
+//                   const seconds = currentDate.getSeconds();
+
+//                   const secondArrowTilt = 30 + seconds * 6;
+
+//                   //
+//                   secondHand.setAttribute('style',
+//                           `transform: rotate(${secondArrowTilt}deg)`);
+
+//                   // document.getElementById("second-hand").style.transform = "rotate(7deg)";
+// // secondHand.style.transform = "rotate(7deg)";
+
+
+//               }, 1000);
+// // console.log(secondHand)
+          }
+
+          function pause() {
+              stop = true;
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// откоментировать потом 
+          // function reset() {
+          //     counter = 0;
+          //     document.getElementById('txt1').innerHTML = counter;
+          // }
+
+          // function reverse() {
+          //     console.log('reverse')
+          // }
+
+
+
+
+
+      </script>
+</body>
+</html>

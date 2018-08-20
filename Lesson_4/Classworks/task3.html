@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form work1</title>
+
+</head>
+<body>
+    <header>
+        <h1>My To Do List</h1>
+      <input id="newToDo" class="textInput"/>
+      <input id="AddToDo" class="addButton" type="button" value="Add"/>
+    </header>
+    <ul id="toDoList"></ul>
+
+  <style>
+
+input[type="button"]{
+  background-color: #2A9AF2;
+  border: none;
+  color: #FFFFFF;
+  border-radius: 3px;
+  width: 100px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+  padding: 10px;
+  /*margin: 0 auto;*/
+  /*display: block;*/
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type="button"]:hover{
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.input-button{
+  width: 100px;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+}
+
+  body {
+        background: #ecf0f1;
+        font: 16px 'Ubuntu', sans-serif;
+    background: #ecf0f1;
+  }
+  header {
+    text-align: center;
+  }
+    .done{
+      text-decoration: line-through;
+    }
+    .textInput{
+ /*     box-sizing: border-box;
+      padding: 10px 20px;*/
+          border: 1px solid #2A9AF2;
+    border-radius: 3px;
+    padding: 9px 20px;
+    }
+    .addButton{
+  /*    box-sizing: border-box;
+      padding: 10px 20px;*/
+      /*background: #ffcc00;*/
+    }
+
+    .DoneCheckbox,
+    .TodoText{
+      margin-right: 5px;
+    }
+
+    button{
+      /*background: red;*/
+      /*color: #fff;*/
+      /*padding: 5px 10px;*/
+    }
+
+    ul li {
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        list-style-type: none;
+        background: #eee;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+    ul li:nth-child(odd) {
+        background: #f9f9f9;
+    }
+    ul li:hover {
+        background: #ddd;
+    }
+    .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 12px 16px 12px 16px;
+    }
+
+    .close:hover {
+        background-color: #2A9AF2;
+        color: white;
+    }
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+  </style>
+
+
+    <script>
+        /*
+          Задание:
+            Создать список дел, в который можно:
+            - Добавить новый элемент
+            - Удалить элемент
+            - Задать что пункт выполнен
+
+          Шаблон элемента:
+            <li class="listItem">
+                <input type="checkbox" class="DoneCheckbox" />
+                <span class="TodoText">{add text}</span>
+                <button>Remove</button>
+            </li>
+
+        */
+        window.addEventListener("load", function () {
+
+        newToDo.placeholder='✍️ Add item...';
+
+        AddToDo.onclick = function () {
+
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("newToDo").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+        alert("You must write something!");
+    } else {
+        document.getElementById("toDoList").appendChild(li);
+    }
+
+
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    var close = document.getElementsByClassName("close");
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            // div.classList.add('done');
+                        div.style.display = 'none'
+                    }
+                }
+
+};
+
+var list = document.querySelector('ul');
+list.addEventListener('click', function (ev) {
+    if(ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked')
+    }
+})
+
+
+
+        });
+    </script>
+</body>
+</html>

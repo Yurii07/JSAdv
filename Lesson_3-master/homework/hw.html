@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>asdas</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <style>
+  #slider{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+  } 
+
+    img {
+
+
+    }
+    .mySlider {
+      position: relative;
+    }
+    #PrevSilde{
+          position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%,-50%);
+    -ms-transform: translate(-0%,-50%);
+    }
+    #NextSilde {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(0%,-50%);
+    -ms-transform: translate(0%,-50%);
+    }
+    .showing {
+    opacity: 1;
+    z-index: 2;
+}
+.slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+  </style>
+  <body>
+    <div class="wrap" id="wrap">
+        <h1>My Awsome Slider HomeWork</h1>
+
+        <div class="mySlider">
+          <header id="SliderControls">
+            <button id="PrevSilde">Prev</button>
+            <button id="NextSilde">Next</button>
+          </header>
+          <div id="slider">
+
+          </div>
+
+        </div>
+
+    </div>
+    <script src="1.js"></script>
+    <script>
+
+    </script>
+  </body>
+
+
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form work1</title>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+    html *,
+    html *:before,
+    html *:after {
+      box-sizing: inherit;
+    }
+    body {
+      color: #161616;
+      padding: 2em;
+      margin: 0 auto;
+      color: #161616;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      background-color: currentColor;
+    }
+    h1 {
+      margin-bottom: 0.5em;
+      color: #fff;
+      font-weight: 100;
+      font-size: 2.5em;
+      text-transform: uppercase;
+    }
+    /* Icons */
+    .icon {
+      /* position: relative; */
+      /* display: inline-block; */
+      font-size: 1em; /* control icon size here */
+    }
+    .sunny {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .rainy {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .cloudy {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .flurries {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .thunder-storm {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .sun-shower {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .sun {
+      width: 2.5em;
+      height: 2.5em;
+      margin: -1.25em;
+      background: currentColor;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.375em orange;
+      -webkit-animation: spin 12s infinite linear;
+      animation: spin 12s infinite linear;
+    }
+    .cloud + .sun {
+      margin: -2em 1em;
+    }
+    .rays {
+      position: absolute;
+      top: -2em;
+      left: 50%;
+      display: block;
+      width: 0.375em;
+      height: 1.125em;
+      margin-left: -0.1875em;
+      background: yellow;
+      border-radius: 0.25em;
+      box-shadow: 0 5.375em yellow;
+    }
+    .rays:before, .rays:after {
+      content: '';
+      position: absolute;
+      top: 0em;
+      left: 0em;
+      display: block;
+      width: 0.375em;
+      height: 1.125em;
+      -webkit-transform: rotate(60deg);
+      transform: rotate(60deg);
+      -webkit-transform-origin: 50% 3.25em;
+      transform-origin: 50% 3.25em;
+      background: yellow;
+      border-radius: 0.25em;
+      box-shadow: 0 5.375em yellow;
+    }
+    .rays:before {
+      -webkit-transform: rotate(120deg);
+      transform: rotate(120deg);
+    }
+    .rain,
+    .lightning,
+    .snow {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 20%;
+      width: 3.75em;
+      height: 3.75em;
+      margin: 0.375em 0 0 -2em;
+      background: currentColor;
+    }
+    .rain:after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      width: 1.125em;
+      height: 1.125em;
+      margin: -1em 0 0 -0.25em;
+      background: #0cf;
+      border-radius: 100% 0 60% 50% / 60% 0 100% 50%;
+      box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2),
+      -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2),
+      -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+      -webkit-transform: rotate(-28deg);
+      transform: rotate(-28deg);
+      -webkit-animation: rain 3s linear infinite;
+      animation: rain 3s linear infinite;
+    }
+    .cloud {
+      position: absolute;
+      z-index: 1;
+      width: 3.6875em;
+      height: 3.6875em;
+      margin: -1.84375em;
+      background: currentColor;
+      border-radius: 50%;
+      box-shadow: -2.1875em 0.6875em 0 -0.6875em,
+      2.0625em 0.9375em 0 -0.9375em,
+      0 0 0 0.375em lightgray,
+      -2.1875em 0.6875em 0 -0.3125em lightgray,
+      2.0625em 0.9375em 0 -0.5625em lightgray;
+    }
+    .cloud:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -0.5em;
+      display: block;
+      width: 4.5625em;
+      height: 1em;
+      background: currentColor;
+      box-shadow: 0 0.4375em 0 -0.0625em lightgray;
+    }
+    .cloud:nth-child(2) {
+      z-index: 0;
+      background: #fff;
+      box-shadow: -2.1875em 0.6875em 0 -0.6875em #fff,
+      2.0625em 0.9375em 0 -0.9375em #fff,
+      0 0 0 0.375em #fff,
+      -2.1875em 0.6875em 0 -0.3125em #fff,
+      2.0625em 0.9375em 0 -0.5625em #fff;
+      opacity: 0.3;
+      -webkit-transform: scale(0.5) translate(6em, -3em);
+      transform: scale(0.5) translate(6em, -3em);
+      -webkit-animation: cloud 4s linear infinite;
+      animation: cloud 4s linear infinite;
+    }
+    .cloud:nth-child(2):after {
+      background: #fff;
+    }
+    .flake:before,
+    .flake:after {
+      content: '\2745';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -1.025em 0 0 -1.0125em;
+      color: #fff;
+      list-height: 1em;
+      opacity: 0.2;
+      -webkit-animation: spin 8s linear infinite reverse;
+      animation: spin 8s linear infinite reverse;
+    }
+    .flake:after {
+      margin: 0.125em 0 0 -1em;
+      font-size: 1.5em;
+      opacity: 0.4;
+      -webkit-animation: spin 14s linear infinite;
+      animation: spin 14s linear infinite;
+    }
+    .flake:nth-child(2):before {
+      margin: -0.5em 0 0 0.25em;
+      font-size: 1.25em;
+      opacity: 0.2;
+      -webkit-animation: spin 10s linear infinite;
+      animation: spin 10s linear infinite;
+    }
+    .flake:nth-child(2):after {
+      margin: 0.375em 0 0 0.125em;
+      font-size: 2em;
+      opacity: 0.4;
+      -webkit-animation: spin 16s linear infinite reverse;
+      animation: spin 16s linear infinite reverse;
+    }
+    .bolt {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -0.25em 0 0 -0.125em;
+      color: #fff;
+      opacity: 0.3;
+      -webkit-animation: lightning 2s linear infinite;
+      animation: lightning 2s linear infinite;
+    }
+    .bolt:nth-child(2) {
+      width: 0.5em;
+      height: 0.25em;
+      margin: -1.75em 0 0 -1.875em;
+      -webkit-transform: translate(2.5em, 2.25em);
+      transform: translate(2.5em, 2.25em);
+      opacity: 0.2;
+      -webkit-animation: lightning 1.5s linear infinite;
+      animation: lightning 1.5s linear infinite;
+    }
+    .bolt:before,
+    .bolt:after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      margin: -1.625em 0 0 -1.0125em;
+      border-top: 1.25em solid transparent;
+      border-right: 0.75em solid;
+      border-bottom: 0.75em solid;
+      border-left: 0.5em solid transparent;
+      -webkit-transform: skewX(-10deg);
+      transform: skewX(-10deg);
+    }
+    .bolt:after {
+      margin: -0.25em 0 0 -0.25em;
+      border-top: 0.75em solid;
+      border-right: 0.5em solid transparent;
+      border-bottom: 1.25em solid transparent;
+      border-left: 0.75em solid;
+      -webkit-transform: skewX(-10deg);
+      transform: skewX(-10deg);
+    }
+    .bolt:nth-child(2):before {
+      margin: -0.75em 0 0 -0.5em;
+      border-top: 0.625em solid transparent;
+      border-right: 0.375em solid;
+      border-bottom: 0.375em solid;
+      border-left: 0.25em solid transparent;
+    }
+    .bolt:nth-child(2):after {
+      margin: -0.125em 0 0 -0.125em;
+      border-top: 0.375em solid;
+      border-right: 0.25em solid transparent;
+      border-bottom: 0.625em solid transparent;
+      border-left: 0.375em solid;
+    }
+    /* Keyframe animations */
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+    @keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes rain {
+      0% {
+        background: #0cf;
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -1.375em -0.125em 0 #0cf;
+      }
+      25% {
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -0.875em 1.125em 0 -0.125em #0cf,
+        -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+      }
+      50% {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0.625em 0.875em 0 -0.125em #0cf,
+        -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+      }
+      100% {
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -1.375em -0.125em 0 #0cf;
+      }
+    }
+    @keyframes rain {
+      0% {
+        background: #0cf;
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -1.375em -0.125em 0 #0cf;
+      }
+      25% {
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -0.875em 1.125em 0 -0.125em #0cf,
+        -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+      }
+      50% {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0.625em 0.875em 0 -0.125em #0cf,
+        -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+      }
+      100% {
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2),
+        -1.375em -0.125em 0 #0cf;
+      }
+    }
+    @-webkit-keyframes cloud {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+        opacity: 0;
+        -webkit-transform: scale(0.5) translate(-200%, -3em);
+        transform: scale(0.5) translate(-200%, -3em);
+      }
+    }
+    @keyframes cloud {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+        opacity: 0;
+        -webkit-transform: scale(0.5) translate(-200%, -3em);
+        transform: scale(0.5) translate(-200%, -3em);
+      }
+    }
+    @-webkit-keyframes lightning {
+      45% {
+        color: #fff;
+        background: #fff;
+        opacity: 0.2;
+      }
+      50% {
+        color: #0cf;
+        background: #0cf;
+        opacity: 1;
+      }
+      55% {
+        color: #fff;
+        background: #fff;
+        opacity: 0.2;
+      }
+    }
+    @keyframes lightning {
+      45% {
+        color: #fff;
+        background: #fff;
+        opacity: 0.2;
+      }
+      50% {
+        color: #0cf;
+        background: #0cf;
+        opacity: 1;
+      }
+      55% {
+        color: #fff;
+        background: #fff;
+        opacity: 0.2;
+      }
+    }
+    #result {
+      color: #fff;
+      margin-top: 80px;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+    .opacity {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<select id="countries"></select>
+<select id="city"></select>
+<div id="result"></div>
+
+<div class="container" id="main">
+  <h1>Weather Icons</h1>
+
+  <div class="icon sunny" id="sunny">
+    <div class="sun">
+      <div class="rays"></div>
+    </div>
+  </div>
+
+  <div class="icon rainy" id="rainy">
+    <div class="cloud"></div>
+    <div class="rain"></div>
+  </div>
+
+  <div class="icon cloudy" id="cloudy">
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+  </div>
+
+  <div class="icon flurries" id="flurries">
+    <div class="cloud"></div>
+    <div class="snow">
+      <div class="flake"></div>
+      <div class="flake"></div>
+    </div>
+  </div>
+
+  <div class="icon thunder-storm" id="thunder-storm">
+    <div class="cloud"></div>
+    <div class="lightning">
+      <div class="bolt"></div>
+      <div class="bolt"></div>
+    </div>
+  </div>
+
+  <div class="icon sun-shower" id="sun-shower">
+    <div class="cloud"></div>
+    <div class="sun">
+      <div class="rays"></div>
+    </div>
+    <div class="rain"></div>
+  </div>
+</div>
+
+<script>
+    /*
+       Задание:
+       1. Сгенерировать список стран в Select countries
+       2. При выборе страны генерировать еще один Select со списком
+         городов этой страны и вывести этот селект в блок result
+       3. При выборе города нужно случайно рандомить температуру от
+       -10 градусов до +40. Если температура
+         -10 до 0 то 'Солнечно' 'Легкий снегопад' 'Сильный снегопад'
+         0 до 30 то  'Солнечно' 'Дождь' 'Ветер' 'Сильный дождь'
+         30 до 40 то 'Солнечно' 'Засуха' 'Ветер'
+       4. Вывести сообщение на страничку
+         {Country}. В {City} {Weather} {Temperature} градусов.
+         Ukraine. В Kyiv Солнечно -10 градусов
+         + бонус добавить красивые картинки с погодой
+         */
+    window.addEventListener("load", function () {
+        var countries = ['Ukraine', 'Poland', 'USA'];
+        var ukraineCity = ['Kyiv', 'Lviv', 'Odesa', 'Charkiv'];
+        var polandCity = ['Warszawa', 'Poznan', 'Krakow', 'Katowice'];
+        var usaCity = ['New York', 'Los Angeles', 'Las Vegas', 'Chicago'];
+        var firstArr = ['Солнечно', 'Легкий снегопад', 'Сильный снегопад'];
+        var SecondArr = ['Солнечно', 'Дождь', 'Ветер', 'Сильный дождь'];
+        var ThirdArr = ['Солнечно', 'Засуха', 'Ветер'];
+        var select = document.getElementById('countries');
+        var city = document.getElementById('city');
+        var res = document.getElementById('result');
+        for (var i = 0; i < countries.length; i++) {
+            var option = document.createElement("option");
+            var arrCountries = countries[i];
+            option.text = arrCountries;
+            option.value = i;
+            select.add(option);
+        }
+        var selected = select.options[select.selectedIndex].text;
+        selectCountry(selected);
+        select.addEventListener('click', function () {
+            selected = select.options[select.selectedIndex].text;
+            // console.log(selected );
+            document.getElementById("city").innerHTML = "";
+            selectCountry(selected)
+        })
+        function selectCountry(selected) {
+            switch (selected) {
+                case 'Ukraine':
+                    createCountry(ukraineCity);
+                    break;
+                case 'Poland':
+                    createCountry(polandCity);
+                    break;
+                case 'USA':
+                    createCountry(usaCity);
+                    break;
+                default:
+                    break;
+            }
+        }
+        function createCountry(value) {
+            console.log(value)
+            for (var i = 0; i < value.length; i++) {
+                var options = document.createElement("option");
+                var arrCitys = value[i];
+                options.text = arrCitys;
+                options.value = i;
+                city.add(options);
+            }
+        }
+        city.addEventListener('change', function () {
+            var cityId = document.getElementById("city");
+            var strUser = cityId.options[cityId.selectedIndex].text;
+            var randTemp = Math.floor(Math.random() * 50) - 10;
+            document.getElementById("flurries").classList.remove('opacity');
+            document.getElementById("rainy").classList.remove('opacity');
+            document.getElementById("cloudy").classList.remove('opacity');
+            document.getElementById("sunny").classList.remove('opacity');
+            document.getElementById("thunder-storm").classList.remove('opacity');
+            if (randTemp >= -10 && randTemp <= 0) {
+                var rand = Math.floor(Math.random() * firstArr.length);
+                console.log('-10 do 0:', strUser, firstArr[rand], randTemp)
+                res.innerHTML = selected + '. В ' + strUser + ', ' + firstArr[rand] + ', ' + randTemp + ' градусов';
+                switch (firstArr[rand]) {
+                    case "Солнечно":
+                        document.getElementById("sunny").classList.add('opacity');
+                        break;
+                    case "Легкий снегопад":
+                        document.getElementById("flurries").classList.add('opacity');
+                        break;
+                    case "Сильный снегопад":
+                        document.getElementById("flurries").classList.add('opacity');
+                        break;
+                    default:
+                        break;
+                }
+            } else if (randTemp >= 0 && randTemp <= 30) {
+                var rand = Math.floor(Math.random() * SecondArr.length);
+                console.log('0 do 30:', strUser, SecondArr[rand], randTemp);
+                res.innerHTML = selected + '. В ' + strUser + ', ' + SecondArr[rand] + ', ' + randTemp + ' градусов';
+                switch (SecondArr[rand]) {
+                    case "Солнечно":
+                        document.getElementById("sunny").classList.add('opacity');
+                        break;
+                    case "Дождь":
+                        document.getElementById("rainy").classList.add('opacity');
+                        break;
+                    case "Ветер":
+                        document.getElementById("cloudy").classList.add('opacity');
+                        break;
+                    case "Сильный дождь":
+                        document.getElementById("thunder-storm").classList.add('opacity');
+                        break;
+                    default:
+                        break;
+                }
+            } else if (randTemp >= 30 && randTemp <= 40) {
+                var rand = Math.floor(Math.random() * ThirdArr.length);
+                console.log('30 do 40:', strUser, ThirdArr[rand], randTemp)
+                res.innerHTML = selected + '. В ' + strUser + ', ' + ThirdArr[rand] + ', ' + randTemp + ' градусов';
+                switch (ThirdArr[rand]) {
+                    case "Солнечно":
+                        document.getElementById("sunny").classList.add('opacity');
+                        break;
+                    case "Засуха":
+                        document.getElementById("sunny").classList.add('opacity');
+                        break;
+                    case "Ветер":
+                        document.getElementById("cloudy").classList.add('opacity');
+                        break;
+                    default:
+                        break;
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

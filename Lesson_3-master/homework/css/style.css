@@ -1,0 +1,78 @@
+body{
+  box-sizing: border-box;
+  padding: 10px 20px 30px;
+  background: #eee;
+  font-family: sans-serif;
+}
+
+.wrap{
+  margin: 10px 20px;
+  background: #fff;
+  padding: 10px 20px 30px;
+}
+.buttonAnimated{
+    width: 100px;
+    height: 30px;
+    background: white;
+    transition: 1s;
+    outline: none;
+}
+.buttonAnimated.animation{
+  width: 350px;
+  height: 50px;
+  background: red;
+}
+.eventButton{
+
+}
+.eventButton.unactive{
+  background: #eee;
+  color: #a8a8a8;
+}
+
+#error{
+  color: red;
+}
+
+#bubbleParent{
+  margin-top: 20px;
+  padding: 20px 30px;
+  border: 1px solid blue;
+}
+#bubbleParent:hover{
+  background: blue;
+}
+#bubbleChild{
+  padding: 20px 30px;
+  border: 1px solid red;
+}
+#bubbleChild:hover{
+  background: red;
+}
+img{
+  transition: 0.5s;
+  transform: rotate(0deg);
+}
+
+.loadedImage{
+  -webkit-animation: animation-name 2s ; /* Safari 4+ */
+  -moz-animation:    animation-name 2s ; /* Fx 5+ */
+  -o-animation:      animation-name 2s ; /* Opera 12+ */
+  animation:         animation-name 2s ; /* IE 10+, Fx 29+ */
+}
+@-webkit-keyframes animation-name {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes animation-name {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes animation-name {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes animation-name {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}

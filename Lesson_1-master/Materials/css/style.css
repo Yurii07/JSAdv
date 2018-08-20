@@ -1,0 +1,47 @@
+
+  html{
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: #ccc;
+    color: #fff;
+    text-align: center;
+
+  }
+  .wrap{
+    /*min-height: 150px;*/
+  }
+h1 {
+	padding-top: 200px;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+button#change {
+	display: block;
+	margin: 0 auto;
+	width: 180px;
+	height: 60px;
+	background: #fff;
+	color: red;
+	font-weight: bold;
+	font-size: 20px;
+	border: 0px;
+
+}
+/*#change{
+ border-radius: 25px;
+ font-size: 30px;
+ padding: 15px;
+}*/
+body, button#change {
+	transition: all 0.4 ease-in-out;
+}
+

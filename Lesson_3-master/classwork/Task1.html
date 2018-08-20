@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Taks 1</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrap" id="wrap">
+        <h1>Добавление списка элементов по условию</h1>
+
+        <header>
+          <input type="text" placeholder="" id="Receiver"/>
+          <input type="submit" value="Add" id="AddToList"/>
+        </header>
+
+        <div>
+          <div id="error">
+
+          </div>
+          <ul id="list">
+
+          </ul>
+        </div>
+
+    </div>
+    <script>
+      /*
+        Задание:
+
+          Написать скрипт, который будет добавлять введеный в инпут Receiver текст
+          в список list.
+          Если в списке больше 5 записей, убирать Event с кнопки AddToList.
+          Кнопке AddToList добавить disabled = true
+
+          После каждого ввода очищать значение инпута
+
+          Используемые методы:
+
+          addEventListener
+          removeEventListener
+
+          document.getElementById
+          document.createElement
+
+          element.innerText
+          element.setAttribute
+          element.appendChild
+
+          Получить значение инпута: Receiver.value [Receiver - это id]
+
+      */
+
+      var ListCount = 0;
+      var ad = document.getElementById('AddToList');
+      var inp = document.getElementById('Receiver');
+      var List = document.getElementById('list');
+      var arrow = document.getElementById('error');
+
+
+
+      function mFunc() {
+        var li = document.createElement('li');
+        var value = inp.value;
+        if( value !== ''){
+          li.innerText = value;
+          List.appendChild(li);
+          inp.value = '';
+        }
+        var divLi = [].slice.call(document.querySelectorAll("li"));   
+        console.log(divLi.length)
+        console.log(li.length)
+
+        if(divLi.length > 5 ) {
+          arrow.appendChild(li);
+          if(divLi.length >5){
+           ad.setAttribute("disabled", "");
+         }
+
+       } 
+
+     }
+
+     ad.addEventListener('click' , mFunc)
+
+    </script>
+  </body>
+
+
+</html>

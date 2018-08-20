@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .block {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<body>
+<div class="block" id="block1">
+    <!--<img src="" width="101" height="40" alt="Google">-->
+
+
+
+</div>
+<button type="button" onClick="onClick()">Click me</button>
+<p>Clicks: <a id="clicks">0</a></p>
+<script>
+    /*
+
+  Задание:
+
+    1. Написать конструктор объекта комментария который принимает 3 аргумента
+    ( имя, текст сообщения, ссылка на аватаку);
+
+    {
+      name: '',
+      text: '',
+      avatarUrl: '...jpg'
+      likes: 0
+    }
+      + Создать прототип, в котором будет содержаться ссылка на картинку по умлочанию
+      + В прототипе должен быть метод который увеличивает счетик лайков
+
+    var myComment1 = new Comment(...);
+
+    2. Создать массив из 4х комментариев.
+    var CommentsArray = [myComment1, myComment2...]
+    //создать глобальный масив через коментс и в конструкторе в комеррей добавить this
+
+    3. Созадть функцию конструктор, которая принимает массив коментариев.
+      И выводит каждый из них на страничку.
+
+    <div id="CommentsFeed"></div>
+
+*/
+    // function comment(c) {
+    //     this.name = name;
+    //     if(avatar !== undefined) {
+    //         this avatar = avatar cto prihotit
+    //
+    //     }
+    //     object.setPrototypeOF(this, yourProto)
+    //
+    // }
+
+
+    // конструктор
+    function Ava(name, text, avatarUrl) {
+        this.name = name;
+        this.text = text;
+// create image  + add scr to img and append to div
+        this.avatarUrl = function () {
+            var img = document.createElement('img');
+            img.src = 'https://js.cx/search/google.png';
+            var block = document.getElementById('block1');
+            block1.appendChild(img);
+        };
+// counter likes
+        this.likes = 0;
+        this.like = function () {
+            this.likes++;
+        }
+
+
+
+    } // end of function Ava
+
+    //arr
+    function Comment(comment) {
+        this.comment = comment;
+    }
+    var myComment1 = new Comment('1');
+    var myComment2 = new Comment('2');
+    var myComment3 = new Comment('3');
+    var myComment4 = new Comment('4');
+    console.log(myComment1,myComment2,myComment3,myComment4);
+
+
+    var avatar = new Ava('asd', 'sdg', 'ghsdfh');
+
+    console.log(avatar);
+    avatar.like();
+    console.log(avatar);
+    console.log(avatar.avatarUrl());
+
+</script>
+</body>
+</html>
