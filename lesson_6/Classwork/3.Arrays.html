@@ -9,8 +9,21 @@
 <body>
 
 <div id="list">
+    <input id='Input' placeholder="Что хотим найти ?">
+    <button onclick="beginhere()">Find</button>
+</div>
+
+<div class="second">
+
+    <select name="списком актеров" id="actors"></select>
+    <select name="продолжительность" id="duration"></select>
+    <button onclick="resultFilm()">Find Result</button>
+    <div class="result" id="result">
+
+    </div>
 
 </div>
+
 <script>
 
     /*
@@ -26,32 +39,41 @@
     var arr = ITEA_COURSES.sort();
     console.log(ITEA_COURSES)
 
-    var list = document.createElement('list');
-    //    document.body.appendChild(ul);
+    var list = document.getElementById('list');
 
-    function ready() {
-        var list = document.getElementById('list');
-        var ul = document.createElement('ul');
+    var ul = document.createElement('ul');
+    list.appendChild(ul);
+
+    // function ready() {
+
+    for (var i = 0; i < ITEA_COURSES.length; i++) {
+
         var li = document.createElement("li");
+        var item = document.createElement("li");
 
-        list.appendChild(ul);
-        ul.appendChild(li);
-
-        for(var i = 0; i < ITEA_COURSES.length; i ++) {
-
-      console.log(ITEA_COURSES[i])
-        }
-        ITEA_COURSES.forEach(function(element) {
-            li.innerHTML= element
-
-//            li.push(element[i])
-            console.log(element)
-        })
-
+        item.appendChild(document.createTextNode(ITEA_COURSES[i]));
+        ul.appendChild(item);
     }
 
-    document.addEventListener("DOMContentLoaded", ready);
+    // }
 
+    // document.addEventListener("DOMContentLoaded", ready);
+
+
+    var arr = ITEA_COURSES;
+
+    function beginhere() {
+        var input = document.getElementById('Input').value;
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == input) {
+                console.log(arr[i])
+                return;
+            }
+        }
+
+        console.log('value not found')
+
+    };
 
 
     /*
@@ -66,29 +88,135 @@
         - Результат в виде списка фильмов
     */
 
-    var stars = ['Elijah Wood', 'Ian McKellen', 'Orlando Bloom','Ewan McGregor',' Liam Neeson', 'Natalie Portman', 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
+    var stars = ['Elijah Wood', 'Ian McKellen', 'Orlando Bloom', 'Ewan McGregor', ' Liam Neeson', 'Natalie Portman', 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman', 'Rupert Graves','Hugo Weaving'];
     var movies = [
         {
             name: "Lord of the Rigs",
             duration: 240,
-            starring: [ 'Elijah Wood', 'Ian McKellen', 'Orlando Bloom']
+            starring: ['Elijah Wood', 'Ian McKellen', 'Orlando Bloom']
         },
         {
             name: "Star Wars: Episode I - The Phantom Menace",
             duration: 136,
-            starring: [ 'Ewan McGregor',' Liam Neeson', 'Natalie Portman']
+            starring: ['Ewan McGregor', 'Liam Neeson', 'Natalie Portman']
         },
         {
             name: "Fargo",
             duration: 100,
-            starring: [ 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
+            starring: ['Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
         },
         {
             name: "V for Vendetta",
             duration: 150,
-            starring: [ 'Hugo Weaving', 'Natalie Portman', 'Rupert Graves']
+            starring: ['Hugo Weaving', 'Natalie Portman', 'Rupert Graves']
         }
     ];
+
+
+    var arr = stars;
+
+    var positiveArr = arr.filter(function (number) {
+        return stars.sort();
+    });
+
+
+    for (var i = 0; i < positiveArr.length; i++) {
+
+        var option = document.createElement("option");
+
+        var actors = document.getElementById('actors');
+
+        // var item = document.createElement("li");
+
+        option.appendChild(document.createTextNode(stars[i]));
+        actors.appendChild(option);
+    }
+
+    for (var i = 0; i < movies.length; i++) {
+
+        var duran = movies[i].duration;
+        var option = document.createElement("option");
+        var duration = document.getElementById('duration');
+
+        option.appendChild(document.createTextNode(duran));
+        duration.appendChild(option);
+
+    }
+
+    function resultFilm() {
+
+        var dur = document.getElementById('duration').value;
+        console.log(dur)
+
+        console.log(movies[0].starring, actors.value);
+
+        // if (movies[0].starring.indexOf(actors.value) >= 0 && movies[0].duration == dur) {
+        //     console.log('Here 0');
+        //
+        //     var results = movies[0].starring;
+        //     var p = document.createElement('p');
+        //     p.appendChild(document.createTextNode(results));
+        //     result.appendChild(p);
+        //
+        //     console.log(movies[0].name, movies[0].duration, movies[0].starring);
+        //
+        // }
+        // else if (movies[1].starring.indexOf(actors.value) >= 0 && movies[1].duration == dur) {
+        //     console.log('Here 1');
+        //     var results = movies[1].starring;
+        //     var p = document.createElement('p');
+        //     p.appendChild(document.createTextNode(results));
+        //     result.appendChild(p);
+        //
+        //     console.log(movies[1].name, movies[1].duration, movies[1].starring);
+        //
+        // }
+        // else if (movies[2].starring.indexOf(actors.value) >= 0 && movies[2].duration == dur) {
+        //     console.log('Here 2');
+        //     var results = movies[2].starring;
+        //     var p = document.createElement('p');
+        //     p.appendChild(document.createTextNode(results));
+        //     result.appendChild(p);
+        //
+        //     console.log(movies[2].name, movies[2].duration, movies[2].starring);
+        //
+        // }
+        // else if (movies[3].starring.indexOf(actors.value) >= 0 && movies[3].duration == dur) {
+        //     console.log('Here 2');
+        //     var results = movies[3].starring;
+        //     var p = document.createElement('p');
+        //     p.appendChild(document.createTextNode(results));
+        //     result.appendChild(p);
+        //
+        //     console.log(movies[3].name, movies[3].duration, movies[3].starring);
+        //
+        // }
+        // else {
+        //     console.log('else')
+        // }
+        result.innerHTML = "";
+        movies.forEach(function resultFilm(movie, i ) {
+
+            if (movie.starring.indexOf(actors.value) >= 0 && movie.duration == dur) {
+                console.log('Here ' + i);
+
+                var results = movie.name;
+
+                var p = document.createElement('p');
+                p.appendChild(document.createTextNode(results));
+                result.appendChild(p);
+
+                console.log(movie.name, movie.duration, movie.starring);
+
+            }
+
+        });
+
+
+    }
+// forEach
+    // console.log(positiveArr ); // 1,2,3
+    // console.log(movies[0].name); // 1,2,3
 
 </script>
 </body>
