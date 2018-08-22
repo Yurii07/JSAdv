@@ -32,6 +32,7 @@ function Ava(name, text, avatarUrl = '', likes) {
 
 }
 
+
 Ava.prototype = source;
 
 var AvaConsole = new Ava('asd', 'sdg', '');
