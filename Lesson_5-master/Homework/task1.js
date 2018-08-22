@@ -7,73 +7,84 @@
 //   object.setPrototypeOF(this, yourProto)
 //
 // }
-//
-// //     // конструктор
-//     function Ava(name, text, avatarUrl, text) {
-//         this.name = name;
-//         this.text = text;
-//         this.avatarUrl = Ava.prototype.src = 'https://js.cx/search/google.png';
-//         this.text = Ava.prototype.text = 'text';
-//
-// // create image  + add scr to img and append to div
-//
-//         // this.avatarUrl = function () {
-//         //     var img = document.createElement('img');
-//         //     img.src = 'https://js.cx/search/google.png';
-//         //     var block = document.getElementById('block1');
-//         //     block1.appendChild(img);
-//         // };
-//         // var x = Ava.prototype.src = 'https://js.cx/search/google.png';
-//     }
-//
-//     // var Avas = {
-//     //     name: '',
-//     //     text: '',
-//     //     avatarUrl: '...jpg',
-//     //     likes: 0
-//     // };
-//
-//
-//
-//     Ava.prototype.text = 'twext';
-//
-//
-//     var asd = new Ava('asd');
-//     console.log(asd);
+var CommentsArray = ['myComment1', 'myComment2', 'myComment3', 'myComment4'];
+var counter = 0;
+
+
+var source = {
+    src: 'https://js.cx/search/google.png',
+    likes: function () {
+        return ++counter;
+        console.log(counter,'111')
+    }
+}
+
+function Ava(name, text, avatarUrl = '', likes) {
+
+    this.name = name;
+    this.text = text;
+    if(avatarUrl === ''){
+        this.avatarUrl = Ava.prototype["src"];
+    } else {
+        this.avatarUrl = avatarUrl;
+    }
+    this.likes = Ava.prototype["likes"];
+
+}
+
+Ava.prototype = source;
+
+var AvaConsole = new Ava('asd', 'sdg', '');
+console.log(AvaConsole)
+
+function comment(number) {
+    for( var i = 0; i<CommentsArray.length; i++) {
+        CommentsFeed.innerHTML += ' ' + CommentsArray[i]
+    }
+    return CommentsArray[number];
+}
+
+console.log(comment(1));
+// console.log(avatar.avatarUrl());
 
 
 
 
 
-
-
-// function Comment(name ,text ,avatarUrl){
+// var CommentsArray = [myComment1, myComment2, myComment3, myComment4];
+//
+// function Ava(name, text, avatarUrl) {
 //     this.name = name;
 //     this.text = text;
-//     this.avatarUrl = avatarUrl;
-//     this.counter = 0;
+// // create image  + add scr to img and append to div
+//     this.avatarUrl = function () {
+//         var img = document.createElement('img');
+//         img.src = 'https://js.cx/search/google.png';
+//         var block = document.getElementById('block1');
+//         block1.appendChild(img);
+//     };
 //
+// // counter likes
+//     this.likes = 0;
+//     this.like = function () {
+//         this.likes++;
+//     }
+// } // end of function Ava
+// //arr
+// function Comment(comment) {
+//     this.comment = comment;
 // }
 //
-// var src = {
-//     url: 'https://www.google.com.ua/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjghbqE8NjcAhUkQpoKHRLcBQgQjRx6BAgBEAU&url=https%3A%2F%2Fwww.google.org%2F&psig=AOvVaw1HKoevGjWTdQTEXecGyXUI&ust=1533660314119401',
-//
-// }
 //
 //
-// Comment.prototype = src;
-// Comment.prototype.cur = function () {
-//     // console.log(this.counter)
-//     this.counter += 1;
-//     console.log(this.counter)
 //
-// }
-// var showComent = new Comment('sa',0,'zalupe');
-//
-// showComent.cur()// onclick
-// function txt () {
-//     console.log('hce tshy')
-// }
-// txt( )
-//
-// // console.log(showComent.cur)
+// var myComment1 = new Comment('1');
+// var myComment2 = new Comment('2');
+// var myComment3 = new Comment('3');
+// var myComment4 = new Comment('4');
+// console.log(myComment1,myComment2,myComment3,myComment4);
+// var avatar = new Ava('asd', 'sdg', 'ghsdfh');
+// console.log(avatar);
+// avatar.like();
+// console.log(avatar);
+// console.log(avatar.avatarUrl());
