@@ -13,9 +13,9 @@ var counter = 0;
 
 var source = {
     src: 'https://js.cx/search/google.png',
-    likes: function () {
+    likes: function addLike() {
         return ++counter;
-        console.log(counter,'111')
+        // console.log(counter,'111')
     }
 }
 
@@ -36,6 +36,9 @@ function Ava(name, text, avatarUrl = '', likes) {
 Ava.prototype = source;
 
 var AvaConsole = new Ava('asd', 'sdg', '');
+
+AvaConsole.likes();
+
 console.log(AvaConsole)
 
 function comment(number) {
@@ -45,7 +48,7 @@ function comment(number) {
     return CommentsArray[number];
 }
 
-console.log(comment(1));
+console.log(comment(1)); //вывод второго коментария
 // console.log(avatar.avatarUrl());
 
 
