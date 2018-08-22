@@ -3,7 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Classwork</title>
+
+    <script>
+        /*
+          Задание:
+            1. Используя интерфейс который есть на страничке, написать визуальный
+            конструктор обектов используя значение key-value, которые вводятся в
+            соответствующие поля в форме.
+
+            2. Каждый созданый обьект выводить в тег code после добавления каждого
+            нового поля. Т.е мы должны визуально видить в каком состоянии наши обьекты
+            сейчас
+
+            3. По нажатию кнопки Combine Objects! два обьекта должны обьедениться
+            используя метод Object.assing или spread operator и вывестись на стринчку.
+
+            * Изменять HTML можно.
+
+        */
+
+    </script>
 </head>
+<body>
+<div class="wrap">
+    <div class="assigned">
+        <form class="ObjForm">
+            <input name="key" placeholder="Enter your key"/>
+            <input name="value" placeholder="Enter your value"/>
+            <input type="button" onclick="addParamToObj(this.form, 'first')" value="Send">
+        </form>
+        <div class="createResult">
+            <header>
+                Created Object
+            </header>
+            <div class="createdObj">
+                <code id="first">
+
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <div class="assigned">
+        <form class="ObjForm">
+            <input name="key" placeholder="Enter your key"/>
+            <input name="value" placeholder="Enter your value"/>
+            <input type="button" onclick="addParamToObj(this.form, 'second')" value="Send">
+        </form>
+        <div class="createResult">
+            <header>
+                Created Object
+            </header>
+            <div class="createdObj">
+                <code id="second"></code>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="resultBlock">
+    <button onclick="combine()">Combine Objects!</button>
+    <h3> Result: </h3>
+    <div id="result"></div>
+</div>
+
+
 <style>
     .wrap{
         width: 800px;
@@ -26,90 +89,26 @@
         font-weight: 700;
     }
 </style>
-<body>
-  <div class="wrap">
-      <div class="assigned">
-        <form class="ObjForm">
-            <input name="key" placeholder="Enter your key"/>
-            <input name="value" placeholder="Enter your value"/>
-            <button type="submit" id="submit">Send</button>
-        </form>
-        <div class="createResult">
-          <header>
-            Created Object
-          </header>
-          <div class="createdObj">
-            <code>
-              {
-                id:123,
-                b:'test',
-                demo:'test2'
-              }
-            </code>
-          </div>
-        </div>
-      </div>
 
-      <div class="assigned">
-        <form class="ObjForm">
-            <input name="key" placeholder="Enter your key"/>
-            <input name="value" placeholder="Enter your value"/>
-            <button type="submit" id="submit">Send</button>
-          </form>
-          <div class="createResult">
-            <header>
-              Created Object
-            </header>
-            <div class="createdObj">
-              <code>
-                {
-                  id:123,
-                  b:'test',
-                  demo:'test2'
-                }
-              </code>
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="resultBlock">
-       <button>Combine Objects!</button>
-      <h3> Result: </h3>
-      <div id="result"></div>
-    </div>
-
-  <script>
-      /*
-        Задание:
-          1. Используя интерфейс который есть на страничке, написать визуальный
-          конструктор обектов используя значение key-value, которые вводятся в
-          соответствующие поля в форме.
-
-          2. Каждый созданый обьект выводить в тег code после добавления каждого
-          нового поля. Т.е мы должны визуально видить в каком состоянии наши обьекты
-          сейчас
-
-          3. По нажатию кнопки Combine Objects! два обьекта должны обьедениться
-          используя метод Object.assing или spread operator и вывестись на стринчку.
-
-          * Изменять HTML можно.
-
-      */
-      function Constr (name) {
-          var key = document.getElementsByName('key').value;
-          this.name = name;
-          console.log(name)
-      }
-      var val = new Constr();
-      var tes = document.getElementsByName('key');
-      console.log(tes)
-
-
-      document.getElementById("submit").addEventListener("click", function () {
-
-      });
-
-  </script>
+<script>
+    const firstObj = new Object;
+    const secondObj = new Object;
+    function addParamToObj(form, param) {
+        var key = form[0].value;
+        var val = form[1].value;
+        if (param === 'first') {
+            firstObj[key] = val;
+            document.getElementById('first').innerHTML = JSON.stringify(firstObj).replace(/,/g, '<br>');
+        } else if (param === 'second') {
+            secondObj[key] = val;
+            document.getElementById('second').innerHTML = JSON.stringify(secondObj).replace(/,/g, '<br>');
+        } else return;
+    }
+    function combine() {
+        const combineObj = Object.assign(firstObj, secondObj);
+        document.getElementById('result').innerHTML = JSON.stringify(combineObj).replace(/,/g, '<br>');
+    }
+</script>
 
 </body>
 </html>
