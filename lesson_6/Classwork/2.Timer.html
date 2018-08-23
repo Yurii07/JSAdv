@@ -8,12 +8,13 @@
     .wrapper {
         position: absolute;
         top: 50%;
-        left: 50%;
+        left: 40%;
         transform: translate(-50%, -50%);
 
         display: flex;
 
     }
+
     #txt1 {
 
     }
@@ -33,6 +34,10 @@
         width: 50%;
         height: 6px;
         background: black;
+    }
+
+    #second-hand {
+        transform: rotate(90deg);
     }
 </style>
 <body>
@@ -54,125 +59,187 @@
     </div>
 
 </div>
+<div id="timer">30</div>
 
-      <!--
-        Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30,
-        также добавьте кнопки который останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отчет.
-        Также попробуйте изменить код так чтобы отчет начиналься с 30 и заканчивалься на 1.
-
-       + бонус: Сделать так что бы на каждый тик (1с/2c) менялся цвет фона. Можно на основе генератора случайного цвета с предудущих уроков.
-       + бонус: Сделать визуализацию стрелки которая идет по кругу
-            document.getElementById("myDIV").style.transform = "rotate(7deg)";
-
-       + бонус: Сделать кнопки которые выбирают режим в котором идет отсчет - обычный от 0 до 30 или реверсивный от 30 до 0
-      -->
-      <script>
-
-          function random_bg_color() {
-              var x = Math.floor(Math.random() * 256);
-              var y = Math.floor(Math.random() * 256);
-              var z = Math.floor(Math.random() * 256);
-              var bgColor = "rgb(" + x + "," + y + "," + z + ")";
-              // console.log(bgColor);
-              document.body.style.background = bgColor;
-          }
+<div id="controls">
+    <button onclick=timerStart()>Start Timer</button>
+    <button onclick=timerStop()>Stop Timer</button>
+    <button onclick=timerReset()>Reset</button>
+    <button onclick="reverse()">Revers</button>
+</div>
 
 
-          var stop = false;
-          var counter = 5; //31
-          function second_passed() {
-              console.log("прошла секунда" + counter);
+<!--
+  Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30,
+  также добавьте кнопки который останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отчет.
+  Также попробуйте изменить код так чтобы отчет начиналься с 30 и заканчивалься на 1.
 
-              if (counter > 2 && !stop) {
-                  timer();
-              } else {
-                  return;
-              }
-          }
+ + бонус: Сделать так что бы на каждый тик (1с/2c) менялся цвет фона. Можно на основе генератора случайного цвета с предудущих уроков.
+ + бонус: Сделать визуализацию стрелки которая идет по кругу
+      document.getElementById("myDIV").style.transform = "rotate(7deg)";
 
-          function timer() {
-              // random_bg_color();
-              if (stop) {
-                  stop = false;
-                 
-              }
+ + бонус: Сделать кнопки которые выбирают режим в котором идет отсчет - обычный от 0 до 30 или реверсивный от 30 до 0
+-->
+<script>
 
-              setTimeout(() => {
-                  second_passed();
-                  counter--;
+    function random_bg_color() {
+        var x = Math.floor(Math.random() * 256);
+        var y = Math.floor(Math.random() * 256);
+        var z = Math.floor(Math.random() * 256);
+        var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+        // console.log(bgColor);
+        document.body.style.background = bgColor;
+    }
 
-                  document.getElementById('txt1').innerHTML = counter;
-              }, 1000)
+    const timer = document.getElementById('timer');
+    // let minutes = 0;
+    let seconds = 30;
 
-              // const hourHand = document.querySelector('.js-hour-hand');
-              // const minuteHand = document.querySelector('.js-min-hand');
-              const secondHand = document.querySelector('.js-second-hand');
+    // start timer
+    function timerStart() {
+        console.log('you started the timer!');
+        // countSeconds = setInterval(countTime, 1000);
+        countTime();
+    }
 
+    var deg = 90;
+    var refreshIntervalId
 
+    function countTime() {
+        console.log('Started');
 
+        timer.innerHTML = seconds;
+        console.log(seconds)
+        random_bg_color();
 
-              setInterval( () => {
- const now = new Date();
-
- const seconds = now.getSeconds();
- const secondsDegrees = ((seconds / 60) * 180) + 90;
- secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-console.log(secondsDegrees)
-}, 1000 );
-
-
-//               setInterval(() => {
-//                   const currentDate = new Date();
-//                   const seconds = currentDate.getSeconds();
-
-//                   const secondArrowTilt = 30 + seconds * 6;
-
-//                   //
-//                   secondHand.setAttribute('style',
-//                           `transform: rotate(${secondArrowTilt}deg)`);
-
-//                   // document.getElementById("second-hand").style.transform = "rotate(7deg)";
-// // secondHand.style.transform = "rotate(7deg)";
+        const secondHand = document.querySelector('.js-second-hand');
 
 
-//               }, 1000);
-// // console.log(secondHand)
-          }
+        refreshIntervalId = setInterval(function () {
+            if (seconds === 0) {
+                console.log('Stopped');
+                clearInterval(refreshIntervalId);
+            } else {
+                seconds--;
+                timer.innerHTML =  seconds;
+                secondHand.style.transform = "rotate(" + deg + "deg)";
+                console.log(seconds, deg);
+                deg = deg + 7;
+                deg = deg % 360;
+            }
+        }, 1000);
 
-          function pause() {
-              stop = true;
-          }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// откоментировать потом 
-          // function reset() {
-          //     counter = 0;
-          //     document.getElementById('txt1').innerHTML = counter;
-          // }
-
-          // function reverse() {
-          //     console.log('reverse')
-          // }
+        // setInterval(() => {
+        //     const now = new Date();
+        //
+        //     const seconds = now.getSeconds();
+        //     const secondsDegrees = ((seconds / 60) * 180) + 90;
+        //     secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+        //     // console.log(secondsDegrees)
+        // }, 1000);
 
 
+        // if (seconds < 10) {
+        //     timer.innerHTML = minutes + ":0" + seconds;
+        // }
+        // else if ((seconds >= 10) && (seconds<=59)) {
+        //     timer.innerHTML = minutes + ":" + seconds;
+        // } else if (seconds = 60){
+        //     minutes += 1;
+        //     seconds = 0;
+        //     timer.innerHTML = minutes + ":0" + seconds;
+        // };
+        // if (seconds == 0) {
+        //     clearInterval(countSeconds);
+        //     console.log('asdasdad')
+        // }
+    };
 
+    // stop timer
+    function timerStop() {
+        clearInterval(countSeconds);
+    }
 
+    // reset timer to 0
+    function timerReset() {
+        seconds = 0;
+        // minutes = 0;
+        // timer.innerHTML = '0:00';
+    }
 
-      </script>
+    function reverse() {
+
+    }
+
+    timer.addEventListener('click', timerStart);
+
+    // var stop = false;
+    // var counter = 8; //31
+    // function second_passed() {
+    //     console.log("прошла секунда" + counter);
+    //
+    //     if (counter > 2 && !stop) {
+    //         timer();
+    //     } else {
+    //         return;
+    //     }
+    // }
+    //
+    // function timer() {
+    //     // random_bg_color();
+    //     if (stop) {
+    //         stop = false;
+    //     }
+    //
+    //     setTimeout(() => {
+    //         second_passed();
+    //         counter--;
+    //         document.getElementById('txt1').innerHTML = counter;
+    //     }, 1000)
+    //
+    //     const secondHand = document.querySelector('.js-second-hand');
+    //
+    //    setInterval ( () => {
+    //        const now = new Date();
+    //
+    //        const seconds = now.getSeconds();
+    //        const secondsDegrees = ((seconds / 60) * 180) + 90;
+    //        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+    //       // console.log(secondsDegrees)
+    //       }, 1000 );
+    //
+    // }
+    //
+    // function pause() {
+    //     random_bg_color();
+    //     stop = true;
+    //     window.clearTimeout(txt1);
+    //
+    //
+    //
+    // }
+
+    // function reset() {
+    //     counter = 31;
+    //     document.getElementById('txt1').innerHTML = counter;
+    // }
+    //
+    // function simple() {
+    //   // 0 to 30
+    //   //   setInterval(counter++);
+    //
+    //
+    // }
+    //
+    // function reverse() {
+    //     // 30 tp o
+    //
+    //     function setTimeout() {
+    //         counter++
+    //     }
+    //     console.log('reverse')
+    // }
+
+</script>
 </body>
 </html>

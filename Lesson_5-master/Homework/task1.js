@@ -40,15 +40,27 @@ var AvaConsole = new Ava('asd', 'sdg', '');
 AvaConsole.likes();
 
 console.log(AvaConsole)
+    // переделать на конструкто и вернуть массив
 
-function comment(number) {
-    for( var i = 0; i<CommentsArray.length; i++) {
-        CommentsFeed.innerHTML += ' ' + CommentsArray[i]
-    }
-    return CommentsArray[number];
-}
+function Comment (number1,number2,number3,number4){
+   this.namber1 = CommentsArray[0];
+       this.namber2 = CommentsArray[1];
+       this.namber3 = CommentsArray[2];
+       this.namber4 = CommentsArray[3];
 
-console.log(comment(1)); //вывод второго коментария
+} 1
+
+// function comment(number) {
+//     for( var i = 0; i<CommentsArray.length; i++) {
+//         CommentsFeed.innerHTML += ' ' + CommentsArray[i]
+//     }
+//     return CommentsArray[number];
+// }
+
+var comm = new Comment(1);
+CommentsFeed.innerHTML = JSON.stringify(CommentsArray).replace(/,/g, '<br>')
+    console.log(new Comment(1))
+// console.log(comment(1)); //вывод второго коментария
 // console.log(avatar.avatarUrl());
 
 
