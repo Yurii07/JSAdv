@@ -207,6 +207,7 @@
 </div>
 
 <style>
+    @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
     #colors {
         width: 200px;
 
@@ -234,11 +235,14 @@
     }
 
     .circle {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         background: #eee;
         border-radius: 50%;
         position: relative;
+        margin: 5px;
+
+
     }
 
     .input-field.col label {
@@ -248,30 +252,36 @@
     #result {
         margin: 0 auto;
     }
+    .test:before {
+        font-family: 'FontAwesome';
+        content: ' \f00c';
+        background-color: #ccc;
+        /* width: 25px; */
+        height: 24px;
+        /* margin-top: 7px; */
+        /* margin-left: -12px; */
+        border-radius: 25px;
+        position: fixed;
+        margin-left: 8px;
+        margin-top: 8px;
+        padding: 2px 5px 2px 5px;
+    }
 
-    .test::after {
-        /*background-color: #000000 !important;*/
-        /*content: '√';*/
-        /*z-index: 1;*/
-        /*width: 12px;*/
-        /*height: 8px;*/
+    .test:after {
+        /*background: #b9b9b9;*/
+        /*color: #fff;*/
+        /*font-weight: normal;*/
+        /*font-family: 'FontAwesome';*/
+        /*content: '\f00c';*/
+        /*font-size: 15px;*/
+        /*margin-top: -6.5px;*/
+        /*margin-left: -6.5px;*/
         /*position: absolute;*/
-        /*top: 3px;*/
-        /*left: 3px;*/
-        /*border: 2px solid #4A89DC;*/
-        /*border-top: none;*/
-        /*border-right: none;*/
-        /*transform: rotate(-50deg);*/
-        content: '';
-        width: 12px;
-        height: 8px;
-        position: absolute;
-        top: 7px;
-        left: 9px;
-        border: 2px solid #4A89DC;
-        border-top: none;
-        border-right: none;
-        transform: rotate(-50deg);
+        left: 13px;
+        top: 13px;
+        border-radius: 23px;
+        height: 20px;
+        width: 20px;
     }
 
 </style>
