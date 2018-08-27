@@ -89,16 +89,80 @@
             function test(event) {
                 console.log(event.target.value);
                 result.style.backgroundColor = event.target.value;
+                // circle.innerHTML = '  <i class="large material-icons">insert_chart</i>'
             }
+
+            // circle.onclick = function () {
+// circle.toggle('transform-active')
+//                 console.log(event.target.value)
+            // }
+
+// colors.onclick = function () {
+            // // var x = document.getElementsByClassName('circle');
+            // for(var i=0; i < colors.length; i++) {
+            //     // console.log(colors[i]);
+            //     colors[i].classList.add('active')
+            //     // var x = colors[i];
+            //     // x.classList.add('red')
+            // }
+            // console.log(colors, 'asd')
+            // function shuffleArray(array) {
+            //     for (var i = array.length - 1; i > 0; i--) {
+            //         var j = Math.floor(Math.random() * (i + 1));
+            //         var temp = array[i];
+            //         array[i] = array[j];
+            //         array[j] = temp;
+            //     }
+            //     return array;
+            // }
+            // var x = document.getElementsByClassName("circle");
+            // var i;
+            // for (i = 0; i < x.length; i++) {
+            //     x[i].style.backgroundColor = "red";
+            //
+            // }
+
+// }
+//             myWidth.addEventListener('onclick', col, false);
+//             circle.addEventListener('change', col, false);
+//
+//             function col(event) {
+//                 console.log(event.target.value);
+//                 result.style.backgroundColor = event.target.value;
+//                 // circle.innerHTML = '  <i class="large material-icons">insert_chart</i>'
+//                 console.log('ds')
+//             }
+            var sliderControler = document.getElementsByClassName("circle");
+            // document.getElementById("demo").innerHTML = nodelist;
+            // var sliderControler = document.getElementsByClassName("slider-controler");
+            // var slideAtual = 0;
+
+            for (var i = 0; i < sliderControler.length; i++) {
+                sliderControler[i].onclick = function () {
+                    // document.getElementsByClassName('circle').classList.remove('test');
+                    var elements = document.getElementsByClassName('circle');
+                    var elementsLength = elements.length - 1;
+                    for (var i = 0; i <= elementsLength; i++) {
+                        elements[i].classList.remove('test');
+                    }
+
+                    this.classList.add('test')
+                    console.log('test');
+                }
+            }
+
+
+// console.log(nodelist)
 
 
         });
 
     </script>
+
 </head>
 <body>
 
-<div class="container-fluid" >
+<div class="container-fluid">
 
     <div class="Templating">
 
@@ -127,7 +191,7 @@
             </div>
             <div class="input-field col s6">
 
-                <input type="color" id="myColor" min="10" max="500" step="10" />
+                <input type="color" id="myColor" min="10" max="500" step="10"/>
                 <label for="myColor">myColor</label>
             </div>
         </div>
@@ -137,7 +201,6 @@
             <div id="result" class="result"></div>
         </div>
     </div>
-
 
 
 </div>
@@ -175,14 +238,42 @@
         height: 30px;
         background: #eee;
         border-radius: 50%;
+        position: relative;
     }
 
     .input-field.col label {
         top: 10px;
     }
+
     #result {
         margin: 0 auto;
     }
+
+    .test::after {
+        /*background-color: #000000 !important;*/
+        /*content: '√';*/
+        /*z-index: 1;*/
+        /*width: 12px;*/
+        /*height: 8px;*/
+        /*position: absolute;*/
+        /*top: 3px;*/
+        /*left: 3px;*/
+        /*border: 2px solid #4A89DC;*/
+        /*border-top: none;*/
+        /*border-right: none;*/
+        /*transform: rotate(-50deg);*/
+        content: '';
+        width: 12px;
+        height: 8px;
+        position: absolute;
+        top: 7px;
+        left: 9px;
+        border: 2px solid #4A89DC;
+        border-top: none;
+        border-right: none;
+        transform: rotate(-50deg);
+    }
+
 </style>
 
 </body>
