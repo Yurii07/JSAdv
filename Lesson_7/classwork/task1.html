@@ -5,50 +5,116 @@
     <title>Constructors</title>
 </head>
 <body>
-  <div class="wrap"></div>
-  <script>
-  /*
+<div class="wrap"></div>
+<script>
+    /*
 
-    Задание:
+      Задание:
 
-    Написать функцию конструктор, которая будет иметь приватные и публичные свойства.
-    Публичные методы должны вызывать приватные.
+      Написать функцию конструктор, которая будет иметь приватные и публичные свойства.
+      Публичные методы должны вызывать приватные.
 
-    Рассмотрим на примере планеты:
+      Рассмотрим на примере планеты:
 
-      - На вход принимаются параметр Имя планеты.
+        - На вход принимаются параметр Имя планеты.
 
-      Создается новый обьект, который имеет публичные методы и свойства:
-      - name (передается через конструктор)
-      - population ( randomPopulation());
-      - rotatePlanet(){
-        let randomNumber = Math.floor(Math.random() * (1000 - 1 + 1)) + 1;
-        if ( (randomNumber % 2) == 0) {
-          growPopulation();
-        } else {
-          Cataclysm();
+        Создается новый обьект, который имеет публичные методы и свойства:
+        - name (передается через конструктор)
+        - population ( randomPopulation());
+        - rotatePlanet(){
+          let randomNumber = Math.floor(Math.random() * (1000 - 1 + 1)) + 1;
+          if ( (randomNumber % 2) == 0) {
+            growPopulation();
+          } else {
+            Cataclysm();
+          }
         }
-      }
 
-      Приватное свойство:
-      populationMultiplyRate - случайное число от 1 до 10;
+        Приватное свойство:
+        populationMultiplyRate - случайное число от 1 до 10;
 
-      Приватные методы
-      randomPopulation -> Возвращает случайное целое число от 1.000 до 10.000
-      growPopulation() {
-        функция которая берет приватное свойство populationMultiplyRate
-        которое равняется случайному числу от 1 до 10 и умножает его на 100.
-        Дальше, число которое вышло добавляет к популяции и выводит в консоль сообщение,
-        что за один цикл прибавилось столько населения на планете .
-      }
-      Cataclysm(){
-        Рандомим число от 1 до 10 и умножаем его на 10000;
-        То число которое получили, отнимаем от популяции.
-        В консоль выводим сообщение - от катаклизма погибло Х человек на планете.
-      }
+        Приватные методы
+        randomPopulation -> Возвращает случайное целое число от 1.000 до 10.000
+        growPopulation() {
+          функция которая берет приватное свойство populationMultiplyRate
+          которое равняется случайному числу от 1 до 10 и умножает его на 100.
+          Дальше, число которое вышло добавляет к популяции и выводит в консоль сообщение,
+          что за один цикл прибавилось столько населения на планете .
+        }
+        Cataclysm(){
+          Рандомим число от 1 до 10 и умножаем его на 10000;
+          То число которое получили, отнимаем от популяции.
+          В консоль выводим сообщение - от катаклизма погибло Х человек на планете.
+        }
 
-  */
+    */
 
-  </script>
+    // class Planet {
+    //     constructor(name) {
+    //         this.name = name;
+    //         console.log(name);
+    //
+    //         this.setPopulation(getRandomInt(1000, 10000));
+    //     }
+    //
+    //     setPopulation(population) {
+    //         console.log("population: " + population);
+    //         this.population = population;
+    //     };
+    //
+    // }
+    //
+    //
+    // function getRandomInt(min, max) {
+    //     return Math.floor(Math.random() * (max - min)) + min;
+    // }
+    //
+    //
+    // var planet = new Planet('Earth');
+    //
+    // console.log(planet);
+
+
+    function Planet(name) {
+        this.name = name;
+        this.population = randomPopulation();
+        this.rotatePlanet = rotatePlanet();
+    }
+
+    function randomPopulation() {
+        var y = Math.floor(Math.random() * (10000 - 1000)) + 1000;
+        return y;
+    }
+
+    function rotatePlanet() {
+        let randomNumber = Math.floor(Math.random() * (1000 - 1 + 1)) + 1;
+        if ((randomNumber % 2) == 0) {
+            //сделать умножение
+            var z = growPopulation() * randomPopulation();
+            // console.log(z, 'прибавилось населения на планете')
+            console.log('growPopulation за один цикл прибавилось ', z, '  населения на планете');
+        } else {
+            // Cataclysm();
+            var q = Cataclysm() - randomPopulation();
+            console.log('Cataclysm', 'от катаклизма погибло', q, 'человек на планете.');
+        }
+    }
+
+    function growPopulation() {
+        var populationMultiplyRate = Math.floor(Math.random() * (10 + 1) * 100);
+        return populationMultiplyRate;
+    }
+
+    console.log(growPopulation());
+
+    // growPopulation(); добавить к популяции
+    function Cataclysm() {
+        return populationMultiplyRate = Math.floor(Math.random() * (10 + 1) * 10000);
+    }
+
+    var planet = new Planet('Earth');
+    console.log(planet, planet.population, planet.rotatePlanet, 'grow', growPopulation(), 'rand', randomPopulation())
+
+</script>
 </body>
 </html>
