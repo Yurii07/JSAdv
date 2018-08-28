@@ -52,13 +52,13 @@ console.log(AvaConsole);
 
 
 // первый способ который принимает массив коментариев и выводит на страницу
-function Comment() {
-    for( var i = 0; i<CommentsArray.length; i++) {
-        CommentsFeed.innerHTML += ' ' + CommentsArray[i] + "<br>" ;
+function Comment(arr) {
+    for( var i = 0; i<arr.length; i++) {
+        CommentsFeed.innerHTML += ' ' + arr[i] + "<br>" ;
 
     }
 }
-console.log(new Comment('arr'));
+console.log(new Comment(CommentsArray));
 
 // второй способ который принимает массив коментариев и выводит на страницу
 // function Comment (number1,number2,number3,number4){
