@@ -18,3 +18,6 @@ git push origin [branch-name]
 git log
 git reset --soft [commit hash] - откатить состояние на состояние коммита
 git reset --hard [commit hash] - откатить состояние и все файлы на состояние коммита
+
+
+git rm Lesson_8/classWork/async.js - удалить файл
