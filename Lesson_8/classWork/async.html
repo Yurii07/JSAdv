@@ -24,6 +24,14 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+
+        /*table tr > *:nth-child(4) {*/
+            /*display: none;*/
+        /*}*/
+
+        /*table tr > *:nth-child(3) {*/
+            /*display: none;*/
+        /*}*/
     </style>
 
 </head>
@@ -31,7 +39,10 @@
 
 <div class="container" id="container">
 
+    <button type="button" id="shows" onclick="myFunction()">Show or Hide: date, address</button>
+
 </div>
+
 <script async>
     /*
 
@@ -57,7 +68,8 @@
 
         var countCompany = company.length;
         var table = document.createElement('table');
-        table.classList.add('table')
+        table.classList.add('table');
+        table.id ="btable"
         container.appendChild(table);
         // document.write('<div className="company-table"><table className="table">');
 
@@ -75,11 +87,16 @@
             var th = document.createElement('th');
 
             tr.appendChild(th);
+            th.classList.add("td" + j);
+
             th.innerHTML = companyHead[j];
             // console.log(th)
         }
 
         //in table tbody
+        var cnt = 0;
+        var x = new Array();
+
         for (var i = 0; i < countCompany; i++) {
             var name = company[i].company;
             var balance = company[i].balance;
@@ -98,33 +115,45 @@
             td1.innerHTML = balance;
 //registered in table
             var td2 = document.createElement('td');
+            td2.classList.add("td2");
             tr.appendChild(td2);
             td2.innerHTML = registered;
 //address in table
             var td3 = document.createElement('td');
+            td3.classList.add("td3");
             tr.appendChild(td3);
 
-
-
             // var x = td3.innerHTML = 'city: ' + address.city + address.zip + address.country + address.state + address.street + address.house ;
-            // console.log(x);
 
             for (var prop in address) {
-                var output = [];
-                // console.log("obj." + prop + " = " + address[prop]);
-                console.log('Значение: '+  address[prop]);
-
+                td3.innerHTML += address[prop] + ' ';
             }
-            td3.innerHTML = address[prop];
-            // console.log(company[i], 'asdasdasd')
 
-
-            console.log(address.city)
-            // console.log(tr);
-            // document.write('<tr className="mess-hide"><td className="name"><h4>' + name + '</h4></td><td className="song"><h4>' + balance );
+            // console.log(x);
+            // console.log(company[i], 'компании')
         }
 
         return company;
+    }
+    function myFunction() {
+
+        var td2 = document.getElementsByClassName('td2');
+        var td3 = document.getElementsByClassName('td3');
+        for(var i=0; i < td2.length; i++) {
+            if (td2[i].style.display === "none") {
+                td2[i].style.display = "table-cell";
+            } else {
+                td2[i].style.display = "none";
+            }
+        }
+        for(var i=0; i < td3.length; i++) {
+            if (td3[i].style.display === "none") {
+                td3[i].style.display = "table-cell";
+            } else {
+                td3[i].style.display = "none";
+            }
+        }
+
     }
 
     var showCompany = getCompanies();
@@ -133,6 +162,7 @@
 
 
 </script>
+
 </body>
 </html>
 
