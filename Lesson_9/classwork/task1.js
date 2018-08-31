@@ -26,34 +26,14 @@
       Сова
 
  */
+
 //
-// Животные (умеют ходить)
-function Animal () {
-    this.name = "безымянное животное";
-    this.moving = 1;
-    this.run = function(distance) {
-        return distance / this.moving
-    }
-}
+// function Animal (name) {
+//     this.name = name;
+// }
+// var animal = new Animal('Страус');
+// console.log(animal)
 
-// Птички (умеют летать)
-function Bird () {
-    this.name = "безымянная птичка";
-    this.flying = 10;
-    this.fly = function(distance) {
-        return distance / this.flying
-    }
-}
+import {one, two} from './nums';
 
-// Птички - это такие животные
-Bird.prototype = new Animal();
-
-// Делаем ворону :о)
-var v = new Bird ();
-v.name = "Каркуша";
-v.moving += 3; // Наша Каркуша бегает чуть быстрее обычных птиц!
-document.write("Имя: " + v.name + "<br>");
-document.write("Скорость движения: " + v.moving + "<br>");
-document.write("Скорость полёта: " + v.flying + "<br>");
-document.write("Пробегает 10 метров за: " + v.run(10) + " секунд<br>");
-document.write("Пролетает 10 метров за: " + v.fly(10) + " секунд<br>");
+document.write(`Сумма импортов: ${one + two}`);
