@@ -10,7 +10,7 @@
 
 <div id="list">
     <input id='Input' placeholder="Что хотим найти ?">
-    <button onclick="beginhere()">Find</button>
+    <button onclick="begin()">Find</button>
 </div>
 
 <div class="second">
@@ -37,7 +37,7 @@
 
     const ITEA_COURSES = ["Курс HTML & CSS", "JavaScript базовый курс", "JavaScript продвинутый курс", "JavaScript Professional", "Angular 2.4 (базовый)", "Angular 2.4 (продвинутый)", "React.js", "React Native", "Node.js", "Vue.js"];
     var arr = ITEA_COURSES.sort();
-    console.log(ITEA_COURSES)
+    console.log(ITEA_COURSES);
 
     var list = document.getElementById('list');
 
@@ -62,10 +62,10 @@
 
     var arr = ITEA_COURSES;
 
-    function beginhere() {
+    function begin() {
         var input = document.getElementById('Input').value;
         for (var i = 0; i < arr.length; i++) {
-            if (arr[i] == input) {
+            if (arr[i] = input) {
                 console.log(arr[i])
                 return;
             }
