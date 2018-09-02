@@ -26,14 +26,3 @@
       Сова
 
  */
-
-//
-// function Animal (name) {
-//     this.name = name;
-// }
-// var animal = new Animal('Страус');
-// console.log(animal)
-
-import {one, two} from './nums';
-
-document.write(`Сумма импортов: ${one + two}`);
