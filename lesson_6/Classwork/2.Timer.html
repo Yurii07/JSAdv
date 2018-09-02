@@ -119,7 +119,7 @@
                 console.log(seconds, deg);
                 deg = deg - ticker * 6.2;
                 deg = deg % 360;
-                // random_bg_color();
+                 random_bg_color();
             }
         }, 1000);
     };
@@ -131,14 +131,16 @@
 
     // reset timer to 0
     function timerReset() {
-        timerStop()
+        timerStop();
+
         seconds = 30;
         deg = 90;
-        timerStart()
+        timerStart();
+
     }
 
     function timerReverse() {
-        timerStop()
+        timerStop();
         seconds = 0;
         countTime(30, +1);
 
