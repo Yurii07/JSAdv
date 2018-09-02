@@ -105,7 +105,7 @@
     function countTime(secondsFinish = 0, ticker = -1) {
         console.log('Started');
         timer.innerHTML = seconds;
-        console.log(seconds)
+//        console.log(seconds);
 
         const secondHand = document.querySelector('.js-second-hand');
         refreshIntervalId = setInterval(function () {
@@ -116,10 +116,11 @@
                 seconds += ticker;
                 timer.innerHTML = seconds;
                 secondHand.style.transform = "rotate(" + deg + "deg)";
-                console.log(seconds, deg);
+//                console.log(deg);
+//                console.log(seconds);
                 deg = deg - ticker * 6.2;
                 deg = deg % 360;
-                 random_bg_color();
+                random_bg_color();
             }
         }, 1000);
     };
@@ -136,6 +137,13 @@
         seconds = 30;
         deg = 90;
         timerStart();
+
+    }
+
+    function timerSimple() {
+        timerStop();
+        seconds = 0;
+        countTime(30, -1);
 
     }
 
