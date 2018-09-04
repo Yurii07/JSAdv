@@ -15,7 +15,12 @@ export default function mainFunc() {
             var resp = document.getElementById('response');
             resp = Http.responseText;
             var respJSON = JSON.parse(resp);
+            console.log(respJSON.cod);
 
+            if (typeof(respJSON.cod) !== 'undefined' && respJSON.cod != 200) {
+                alert(respJSON.message);
+                return false;
+            }
             //выводим иконку погоды
             var icon = respJSON.weather[0].icon;
             // response.innerHTML = icon;
@@ -43,19 +48,25 @@ export default function mainFunc() {
             var windSpeed = respJSON.wind.speed;
             var windDeg = respJSON.wind.deg;
 
+            var coordLon = respJSON.coord.lon;
+            var coordLat = respJSON.coord.lat;
+            initMap(respJSON.coord.lon, respJSON.coord.lat);
+            console.log(coordLon, coordLat);
 
-            response.innerHTML = "<h2>Current Weather for " + "<img src='http://openweathermap.org/images/flags/" + res + ".png'>" +cityName + " ," + countryn + "<h2>" +
-                "<h3>Weather: " + weatherMain + "<h3>" +
-                "<h3 stype='padding-left:10px'>Description: <img src='http://openweathermap.org/img/w/" + icon + ".png '> " + description + "<h3>" +
-                "<h3>Temperature: " + mainTemp + "&deg;C<h3>" +
-                "<h3>Pressure: " + pressure + " hPa<h3>" +
-                "<h3>Humidity: " + humidity + "%<h3>" +
-                "<h3>Min. Temperature: " + tempMin + "&deg;C<h3>" +
-                "<h3>Max. Temperature: " + tempMax + "&deg;C<h3>" +
-                "<h3>Wind Speed: " + windSpeed + "m/s<h3>" +
-                "<h3>Wind Direction: " + windDeg + "&deg;<h3>";
+            response.innerHTML = "<h2>Current Weather in: " + "<img src='http://openweathermap.org/images/flags/" + res + ".png'>&nbsp;" + cityName + " ," + countryn + "</h2>" +
+
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Weather:</strong> </div><div class='col-sm-6 text-left'>" + weatherMain + "</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right cw'><strong>Description:</strong> </div><div class='col-sm-6 text-left'><img src='http://openweathermap.org/img/w/" + icon + ".png '>  " + description + "</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Temperature: </strong></div><div class='col-sm-6 text-left'>" + mainTemp + "&deg;C</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Pressure: </strong></div><div class='col-sm-6 text-left'>" + pressure + " hPa</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Humidity: </strong></div><div class='col-sm-6 text-left'>" + humidity + "%</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Min. Temperature: </strong></div><div class='col-sm-6 text-left'>" + tempMin + "&deg;C</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Max. Temperature: </strong></div><div class='col-sm-6 text-left'>" + tempMax + "&deg;C</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Wind Speed: </strong></div><div class='col-sm-6 text-left'>" + windSpeed + "m/s</div></div>" +
+                "<div class='row'> <div class='col-sm-6 text-right'><strong>Wind Direction: </strong></div><div class='col-sm-6 text-left'>" + windDeg + "&deg;</div></div>";
 
             console.log(weatherMain, description, mainTemp, pressure, humidity, tempMin, tempMax, windSpeed, windDeg, countryn, cityName)
+
         }
         ;
 

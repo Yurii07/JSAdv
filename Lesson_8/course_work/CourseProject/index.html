@@ -12,7 +12,7 @@
 
 
 <div class="row">
-    <h1>Get gurrent position</h1>
+    <h1>Get current weather</h1>
     <div class="col-sm-12">
         <form class="form-inline text-center first-child" role="form" id="searchform" action="#"
               method="get">
@@ -35,7 +35,7 @@
         <div class="tab-pane active" id="forecast-list">
             <div id="forecast_list_ul">
 
-                <table class="table" style="display: none">
+                <table class="table " style="display: none">
                     <tbody>
                     <tr>
                         <td><img src="http://openweathermap.org/img/w/04d.png" id="weatherImg"></td>
@@ -53,9 +53,14 @@
         </div>
     </div>
 </div>
+<div class="current-wrap" style="">
+    <div class="div" id="response">
 
-<div class="div" id="response">
+    </div>
+</div>
 
+<div class="navbar-fixed-bottom" id="footer" >
+    <div id="map"></div>
 </div>
 
 
@@ -75,6 +80,48 @@
 
 //    // GoogleMaps JavaScript API key
 
+</script>
+<script>
+    // Note: This example requires that you consent to location sharing when
+    // prompted by your browser. If you see the error "The Geolocation service
+    // failed.", it means you probably did not give permission for the browser to
+    // locate you.
+    var map, infoWindow;
+
+    function initMap(long = 150.644, lati = -34.397) {
+        // if (typeof (map) == 'undefined')
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: lati, lng: long},
+                zoom: 6
+            });
+        console.log(long, lati);
+        infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        var pos = {
+            lat: lati,
+            lng: long
+        };
+        // var coordLon = respJSON.coord.lon;
+        // var coordLat = respJSON.coord.lat;
+        console.log('test');
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+    }
+
+    // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    //     infoWindow.setPosition(pos);
+    //
+    //     infoWindow.setContent(browserHasGeolocation ?
+    //         'Error: The Geolocation service failed.' :
+    //         'Error: Your browser doesn\'t support geolocation.');
+    //     infoWindow.open(map);
+    // }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFI8iRuIhAgkxFX-s4yNsqxjjefyW-wng">
 </script>
 
 <script src="./dist/main.js"></script>
