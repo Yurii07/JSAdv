@@ -53,7 +53,7 @@ export default function mainFunc() {
             initMap(respJSON.coord.lon, respJSON.coord.lat);
             console.log(coordLon, coordLat);
 
-            response.innerHTML = "<h2>Current Weather in: " + "<img src='http://openweathermap.org/images/flags/" + res + ".png'>&nbsp;" + cityName + " ," + countryn + "</h2>" +
+            response.innerHTML = "<h2 style='font-size:20px;'>Current Weather in: " + "<img src='http://openweathermap.org/images/flags/" + res + ".png'>&nbsp;" + cityName + " ," + countryn + "</h2>" +
 
                 "<div class='row'> <div class='col-sm-6 text-right'><strong>Weather:</strong> </div><div class='col-sm-6 text-left'>" + weatherMain + "</div></div>" +
                 "<div class='row'> <div class='col-sm-6 text-right cw'><strong>Description:</strong> </div><div class='col-sm-6 text-left'><img src='http://openweathermap.org/img/w/" + icon + ".png '>  " + description + "</div></div>" +
