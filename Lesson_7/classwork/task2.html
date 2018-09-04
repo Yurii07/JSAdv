@@ -34,7 +34,7 @@
                 <textarea placeholder="Your Message" id="message"></textarea>
             </label>
 
-            <button type="submit">Send Message</button>
+            <button type="button" onclick="appendText()">Send Message</button>
         </form>
     </header>
 
@@ -117,7 +117,7 @@
             console.log('answer message:', this);
         }
         sendAnswer(){
-            this.andwers.push()
+            this.answers.push();
         }
         render(){
             let renderTarget = document.getElementById("message_list");
@@ -158,8 +158,22 @@
         </div>`)
         }
     }
-    new Message ('Authr', 'text');
+
+
+    var message = new Message ('Authr', 'text');
     global_messages.map( item => item.render() )
+//
+    function appendText () {
+
+        document.getElementById('message_list').innerHTML = '';
+        var x = document.getElementById('message').value;
+        console.log('test',x );
+
+
+        new Message ('Authr', x);
+        global_messages.map( item => item.render() );
+
+    }
 </script>
 </body>
 </html>
