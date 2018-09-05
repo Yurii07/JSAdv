@@ -18,7 +18,7 @@ export default function mainFunc() {
             resp = Http.responseText;
             var respJSON = JSON.parse(resp);
 
-            console.log(respJSON.cod);
+            console.log(respJSON.cod);// обращение к элементу обьекта
 
 
             if (typeof(respJSON.cod) !== 'undefined' && respJSON.cod != 200) {
@@ -29,12 +29,10 @@ export default function mainFunc() {
             var icon = respJSON.weather[0].icon;
             // response.innerHTML = icon;
             // console.log(icon);
-            // resp = document.getElementById('weatherImg').setAttribute('src', "http://openweathermap.org/img/w/" + icon + ".png");
 
-
-//Выводим флаг стран
+            //Выводим флаг стран
             var res = respJSON.sys.country.toLowerCase();
-            var resFlags = document.getElementById('flags').setAttribute('src', "http://openweathermap.org/images/flags/" + res + ".png");
+            document.getElementById('flags').setAttribute('src', "http://openweathermap.org/images/flags/" + res + ".png");
 
             // console.log(respJSON.sys.country)
 
@@ -46,16 +44,18 @@ export default function mainFunc() {
             var pressure = respJSON.main.pressure;
             var humidity = respJSON.main.humidity;
 
-            var tempMin = respJSON.main.temp_min;
-            var tempMax = respJSON.main.temp_max;
+            var tempMin = respJSON.main.temp_min; //temp Min
+            var tempMax = respJSON.main.temp_max; //temp Max
 
-            var windSpeed = respJSON.wind.speed;
-            var windDeg = respJSON.wind.deg;
+            var windSpeed = respJSON.wind.speed; // wind Speed
+            var windDeg = respJSON.wind.deg; //wind direction degree
 
             var coordLon = respJSON.coord.lon;
             var coordLat = respJSON.coord.lat;
+
             initMap(respJSON.coord.lon, respJSON.coord.lat);
             console.log(coordLon, coordLat);
+
 
             response.innerHTML = "<h2 style='font-size:20px;'>Current Weather in: " + "<img src='http://openweathermap.org/images/flags/" + res + ".png'>&nbsp;" + cityName + " ," + countryn + "</h2>" +
 
