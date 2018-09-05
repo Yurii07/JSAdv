@@ -1,3 +1,4 @@
+//export используется для экспорта функций, объектов или примитивов из файла (или модуля). помечаются переменные и функции, которые могут быть использованы снаружи.
 export default function mainFunc() {
     var input = document.getElementById('search_str');
 
@@ -10,12 +11,15 @@ export default function mainFunc() {
         Http.open("GET", url);
         Http.send();
         Http.onload = (e) => {
-            console.log(Http.responseText);
+
+            console.log(Http.responseText); //Текст ответа сервера.
 
             var resp = document.getElementById('response');
             resp = Http.responseText;
             var respJSON = JSON.parse(resp);
+
             console.log(respJSON.cod);
+
 
             if (typeof(respJSON.cod) !== 'undefined' && respJSON.cod != 200) {
                 alert(respJSON.message);

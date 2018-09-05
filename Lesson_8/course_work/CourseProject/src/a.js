@@ -1,5 +1,5 @@
 console.log('a.js');
-
+//Другие модули могут подключать экспортированные значения при помощи ключевого слова import.
 import FindCity from './findCity';
 
 

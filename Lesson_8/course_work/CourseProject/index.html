@@ -18,7 +18,7 @@
             <form class="form-inline text-center first-child" role="form" id="searchform" action="#"
                   method="get">
                 <div class="form-group">
-                    <label class="sr-only" for="help-search">Search</label>
+                    <label class="sr-only" >Search</label>
 
                     <input class="form-control border-color col-sm-12" id="search_str" name="q" value="London, UK"
                            onfocus="this.value = (this.value=='London, UK')? '' : this.value;" placeholder="Search">
@@ -70,19 +70,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script>
 
-
-
-
-    // document.addEventListener('DOMContentLoaded', function () {
-    // });
-
-
-
-//    // GoogleMaps JavaScript API key
-
-</script>
 <script>
     // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
@@ -122,6 +110,8 @@
     //     infoWindow.open(map);
     // }
 </script>
+<!-- defer откладывает выполнение скрипта до тех пор, пока вся страница не будет загружена полностью.-->
+<!--async указанный в атрибуте src файл будет выполняться без ожидания загрузки и отображения веб-страницы-->
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFI8iRuIhAgkxFX-s4yNsqxjjefyW-wng">
 </script>
