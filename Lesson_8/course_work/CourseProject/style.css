@@ -92,3 +92,8 @@ footer {
     bottom: 0;
     width: 100%;
 }
+#search_str {
+    /*border-color: #5bc0de;*/
+    border: 1px solid #5bc0de;
+    cursor: text;
+}
